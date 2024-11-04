@@ -85,7 +85,7 @@ static inline void storechunk(uint8_t *out, chunk_t *chunk) {
  *         loadchunk and storechunk to ensure the result is correct.
  */
 static inline uint8_t* CHUNKCOPY(uint8_t *out, uint8_t const *from, unsigned len) {
-    Assert(len > 0, "chunkcopy should never have a length 0");
+    AssertHint(len > 0, "chunkcopy should never have a length 0");
     int32_t align = ((len - 1) % sizeof(chunk_t)) + 1;
     memcpy(out, from, sizeof(chunk_t));
     out += align;

@@ -1106,7 +1106,7 @@ int32_t Z_EXPORT PREFIX(deflate)(PREFIX3(stream) *strm, int32_t flush) {
     if (s->wrap > 0)
         s->wrap = -s->wrap; /* write the trailer only once! */
     if (s->pending == 0) {
-        Assert(s->bi_valid == 0, "bi_buf not flushed");
+        AssertHint(s->bi_valid == 0, "bi_buf not flushed");
         return Z_STREAM_END;
     }
     return Z_OK;
@@ -1274,7 +1274,7 @@ void Z_INTERNAL PREFIX(fill_window)(deflate_state *s) {
     unsigned int more;    /* Amount of free space at the end of the window. */
     unsigned int wsize = s->w_size;
 
-    Assert(s->lookahead < MIN_LOOKAHEAD, "already enough lookahead");
+    AssertHint(s->lookahead < MIN_LOOKAHEAD, "already enough lookahead");
 
     do {
         more = s->window_size - s->lookahead - s->strstart;
@@ -1311,7 +1311,7 @@ void Z_INTERNAL PREFIX(fill_window)(deflate_state *s) {
          * Otherwise, window_size == 2*WSIZE so more >= 2.
          * If there was sliding, more >= WSIZE. So in all cases, more >= 2.
          */
-        Assert(more >= 2, "more < 2");
+        AssertHint(more >= 2, "more < 2");
 
         n = PREFIX(read_buf)(s->strm, s->window + s->strstart + s->lookahead, more);
         s->lookahead += n;

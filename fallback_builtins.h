@@ -13,7 +13,7 @@
  * Performance tzcnt/bsf is identical on Intel cpu, tzcnt is faster than bsf on AMD cpu.
  */
 static __forceinline int __builtin_ctz(unsigned int value) {
-    Assert(value != 0, "Invalid input value: 0");
+    AssertHint(value != 0, "Invalid input value: 0");
 # if defined(X86_FEATURES) && !(_MSC_VER < 1700)
     return (int)_tzcnt_u32(value);
 # else
@@ -29,7 +29,7 @@ static __forceinline int __builtin_ctz(unsigned int value) {
  * Because of that assumption trailing_zero is not initialized and the return value is not checked.
  */
 static __forceinline int __builtin_ctzll(unsigned long long value) {
-    Assert(value != 0, "Invalid input value: 0");
+    AssertHint(value != 0, "Invalid input value: 0");
 # if defined(X86_FEATURES) && !(_MSC_VER < 1700)
     return (int)_tzcnt_u64(value);
 # else

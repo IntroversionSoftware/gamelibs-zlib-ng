@@ -490,7 +490,7 @@ static void send_tree(deflate_state *s, ct_data *tree, int max_code) {
                 send_code(s, curlen, s->bl_tree, bi_buf, bi_valid);
                 count--;
             }
-            Assert(count >= 3 && count <= 6, " 3_6?");
+            AssertHint(count >= 3 && count <= 6, " 3_6?");
             send_code(s, REP_3_6, s->bl_tree, bi_buf, bi_valid);
             send_bits(s, count-3, 2, bi_buf, bi_valid);
 
@@ -558,8 +558,8 @@ static int build_bl_tree(deflate_state *s) {
 static void send_all_trees(deflate_state *s, int lcodes, int dcodes, int blcodes) {
     int rank;                    /* index in bl_order */
 
-    Assert(lcodes >= 257 && dcodes >= 1 && blcodes >= 4, "not enough codes");
-    Assert(lcodes <= L_CODES && dcodes <= D_CODES && blcodes <= BL_CODES, "too many codes");
+    AssertHint(lcodes >= 257 && dcodes >= 1 && blcodes >= 4, "not enough codes");
+    AssertHint(lcodes <= L_CODES && dcodes <= D_CODES && blcodes <= BL_CODES, "too many codes");
 
     // Temp local variables
     uint32_t bi_valid = s->bi_valid;
@@ -811,7 +811,7 @@ void Z_INTERNAL zng_tr_flush_bits(deflate_state *s) {
 Z_INTERNAL uint16_t PREFIX(bi_reverse)(unsigned code, int len) {
     /* code: the value to invert */
     /* len: its bit length */
-    Assert(len >= 1 && len <= 15, "code length must be 1-15");
+    AssertHint(len >= 1 && len <= 15, "code length must be 1-15");
 #define bitrev8(b) \
     (uint8_t)((((uint8_t)(b) * 0x80200802ULL) & 0x0884422110ULL) * 0x0101010101ULL >> 32)
     return (bitrev8(code >> 8) | (uint16_t)bitrev8(code) << 8) >> (16 - len);
