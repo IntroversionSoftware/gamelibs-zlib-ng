@@ -683,7 +683,7 @@ jobs:
       env:
         CC: ${{ matrix.compiler }}
         CXX: ${{ matrix.cxx-compiler }}
-        CFLAGS: ${{ matrix.cflags }}
+        CFLAGS: ${{ matrix.cflags }} ${{ runner.os != 'Windows' && '-Werror -Wall -Wextra -Wabi=11 -Wshadow -Wimplicit-function-declaration -Wno-discarded-qualifiers -Wcast-align -Wformat-security -Winit-self -Wlogical-op -Wnull-dereference -Wwrite-strings' || ''}}
         LDFLAGS: ${{ matrix.ldflags }}
         CI: true
 
