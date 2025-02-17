@@ -1,9 +1,9 @@
 #include "zbuild.h"
 #include "crc32.h"
 #include "crc32_braid_p.h"
-#include "crc32_c.h"
+#include "generic_functions.h"
 
-uint32_t PREFIX(crc32_c)(uint32_t crc, const uint8_t *buf, size_t len) {
+Z_INTERNAL uint32_t crc32_c(uint32_t crc, const uint8_t *buf, size_t len) {
     uint32_t c;
     uint64_t* aligned_buf;
     size_t aligned_len;

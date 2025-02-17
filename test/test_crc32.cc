@@ -224,8 +224,13 @@ INSTANTIATE_TEST_SUITE_P(crc32, crc32_variant, testing::ValuesIn(tests));
         hash(GetParam(), func); \
     }
 
-TEST_CRC32(generic, PREFIX(crc32_c), 1)
-TEST_CRC32(braid, PREFIX(crc32_braid), 1)
+#ifndef WITHOUT_CHORBA
+TEST_CRC32(generic_chorba, crc32_c, 1)
+#else
+TEST_CRC32(generic, crc32_c, 1)
+#endif
+
+TEST_CRC32(braid, crc32_braid, 1)
 
 #ifdef DISABLE_RUNTIME_CPU_DETECTION
 TEST_CRC32(native, native_crc32, 1)

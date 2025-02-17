@@ -1,7 +1,7 @@
 #include "zbuild.h"
 #include "crc32_braid_p.h"
 #include "crc32_braid_tbl.h"
-#include "crc32_c.h"
+#include "generic_functions.h"
 
 /* Implement Chorba algorithm from https://arxiv.org/abs/2412.16398 */
 #define bitbuffersizebytes (16 * 1024 * sizeof(z_word_t))
