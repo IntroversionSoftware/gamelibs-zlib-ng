@@ -19,7 +19,7 @@ Z_INTERNAL uint32_t crc32_c(uint32_t crc, const uint8_t *buf, size_t len) {
         aligned_len = len - algn_diff;
         if(aligned_len > CHORBA_LARGE_THRESHOLD)
             c = crc32_chorba_118960_nondestructive(c, (z_word_t*) aligned_buf, aligned_len);
-#  if BRAID_W == 8
+#  if OPTIMAL_CMP == 64
         else if (aligned_len > CHORBA_MEDIUM_LOWER_THRESHOLD && aligned_len <= CHORBA_MEDIUM_UPPER_THRESHOLD)
             c = crc32_chorba_32768_nondestructive(c, (uint64_t*) aligned_buf, aligned_len);
         else if (aligned_len > CHORBA_SMALL_THRESHOLD_64BIT)
