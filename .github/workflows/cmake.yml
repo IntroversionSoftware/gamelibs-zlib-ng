@@ -97,6 +97,13 @@ jobs:
             packages: gcc-multilib g++-multilib
             codecov: ubuntu_gcc_m32
 
+          - name: Ubuntu GCC No Chorba
+            os: ubuntu-latest
+            compiler: gcc
+            cxx-compiler: g++
+            cmake-args: -DWITH_CHORBA=OFF
+            codecov: ubuntu_gcc_no_chorba
+
           - name: Ubuntu GCC No CTZLL
             os: ubuntu-latest
             compiler: gcc

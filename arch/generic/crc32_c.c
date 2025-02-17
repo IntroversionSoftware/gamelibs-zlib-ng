@@ -4,12 +4,11 @@
 #include "generic_functions.h"
 
 Z_INTERNAL uint32_t crc32_c(uint32_t crc, const uint8_t *buf, size_t len) {
-    uint32_t c;
+    uint32_t c = (~crc) & 0xffffffff;
+
+#ifndef WITHOUT_CHORBA
     uint64_t* aligned_buf;
     size_t aligned_len;
-
-    c = (~crc) & 0xffffffff;
-#ifndef WITHOUT_CHORBA
     unsigned long algn_diff = ((uintptr_t)8 - ((uintptr_t)buf & 0xF)) & 0xF;
     if (algn_diff < len) {
         if (algn_diff) {

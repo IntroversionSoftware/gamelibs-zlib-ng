@@ -86,6 +86,7 @@ option(WITH_BENCHMARK_APPS "Build application benchmarks" OFF)
 option(WITH_OPTIM "Build with optimisation" ON)
 option(WITH_REDUCED_MEM "Reduced memory usage for special cases (reduces performance)" OFF)
 option(WITH_NEW_STRATEGIES "Use new strategies" ON)
+option(WITH_CRC32_CHORBA "Enable optimized CRC32 algorithm Chorba" ON)
 option(WITH_NATIVE_INSTRUCTIONS
     "Instruct the compiler to use the full instruction set on this host (gcc/clang -march=native)" OFF)
 option(WITH_RUNTIME_CPU_DETECTION "Build with runtime detection of CPU architecture" ON)
@@ -137,6 +138,7 @@ option(INSTALL_UTILS "Copy minigzip and minideflate during install" OFF)
 mark_as_advanced(FORCE
     ZLIB_SYMBOL_PREFIX
     WITH_REDUCED_MEM
+    WITH_CRC32_CHORBA
     WITH_ARMV8 WITH_NEON
     WITH_ARMV6
     WITH_DFLTCC_DEFLATE
@@ -168,6 +170,10 @@ endif()
 
 if(WITH_GZFILEOP)
     add_definitions(-DWITH_GZFILEOP)
+endif()
+
+if(NOT WITH_CRC32_CHORBA)
+    add_definitions(-DWITHOUT_CHORBA)
 endif()
 
 if(CMAKE_C_COMPILER_ID MATCHES "^Intel")
@@ -1092,14 +1098,16 @@ set(ZLIB_PRIVATE_HDRS
     arch/generic/compare256_p.h
     arch/generic/generic_functions.h
     adler32_p.h
+    arch_functions.h
     chunkset_tpl.h
     compare256_rle.h
-    arch_functions.h
+    crc32.h
     crc32_braid_p.h
     crc32_braid_comb_p.h
     crc32_braid_tbl.h
     deflate.h
     deflate_p.h
+    fallback_builtins.h
     functable.h
     inffast_tpl.h
     inffixed_tbl.h
@@ -1113,7 +1121,9 @@ set(ZLIB_PRIVATE_HDRS
     trees_tbl.h
     zbuild.h
     zendian.h
+    zmemory.h
     zutil.h
+    zutil_p.h
 )
 set(ZLIB_SRCS
     arch/generic/adler32_c.c
@@ -1122,7 +1132,6 @@ set(ZLIB_SRCS
     arch/generic/compare256_c.c
     arch/generic/crc32_braid_c.c
     arch/generic/crc32_c.c
-    arch/generic/crc32_chorba_c.c
     arch/generic/crc32_fold_c.c
     arch/generic/slide_hash_c.c
     adler32.c
@@ -1147,6 +1156,10 @@ set(ZLIB_SRCS
     uncompr.c
     zutil.c
 )
+
+if(WITH_CRC32_CHORBA)
+    list(APPEND ZLIB_SRCS arch/generic/crc32_chorba_c.c)
+endif()
 
 if(WITH_RUNTIME_CPU_DETECTION)
     list(APPEND ZLIB_PRIVATE_HDRS cpu_features.h)
@@ -1390,6 +1403,7 @@ add_feature_info(WITH_BENCHMARKS WITH_BENCHMARKS "Build test/benchmarks")
 add_feature_info(WITH_BENCHMARK_APPS WITH_BENCHMARK_APPS "Build application benchmarks")
 add_feature_info(WITH_OPTIM WITH_OPTIM "Build with optimisation")
 add_feature_info(WITH_NEW_STRATEGIES WITH_NEW_STRATEGIES "Use new strategies")
+add_feature_info(WITH_CRC32_CHORBA WITH_CRC32_CHORBA "Use optimized CRC32 algorithm Chorba")
 add_feature_info(WITH_NATIVE_INSTRUCTIONS WITH_NATIVE_INSTRUCTIONS
     "Instruct the compiler to use the full instruction set on this host (gcc/clang -march=native)")
 add_feature_info(WITH_RUNTIME_CPU_DETECTION WITH_RUNTIME_CPU_DETECTION "Build with runtime CPU detection")
