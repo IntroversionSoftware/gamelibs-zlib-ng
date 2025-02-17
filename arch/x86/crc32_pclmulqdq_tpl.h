@@ -398,7 +398,7 @@ static inline uint32_t crc32_small(uint32_t crc, const uint8_t *buf, size_t len)
 
     while (len) {
         len--;
-        DO1;
+        CRC_DO1;
     }
 
     return c ^ 0xffffffff;

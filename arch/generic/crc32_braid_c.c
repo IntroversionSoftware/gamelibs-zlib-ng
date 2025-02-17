@@ -72,7 +72,7 @@ Z_INTERNAL uint32_t crc32_braid_internal(uint32_t c, const uint8_t *buf, size_t 
         /* Compute the CRC up to a z_word_t boundary. */
         while (len && ((uintptr_t)buf & (BRAID_W - 1)) != 0) {
             len--;
-            DO1;
+            CRC_DO1;
         }
 
         /* Compute the CRC on as many BRAID_N z_word_t blocks as are available. */
@@ -201,11 +201,11 @@ Z_INTERNAL uint32_t crc32_braid_internal(uint32_t c, const uint8_t *buf, size_t 
     /* Complete the computation of the CRC on any remaining bytes. */
     while (len >= 8) {
         len -= 8;
-        DO8;
+        CRC_DO8;
     }
     while (len) {
         len--;
-        DO1;
+        CRC_DO1;
     }
 
     /* Return the CRC, post-conditioned. */

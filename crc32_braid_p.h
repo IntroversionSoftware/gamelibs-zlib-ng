@@ -31,8 +31,8 @@
 #  error "No endian defined"
 #endif
 
-#define DO1 c = crc_table[(c ^ *buf++) & 0xff] ^ (c >> 8)
-#define DO8 DO1; DO1; DO1; DO1; DO1; DO1; DO1; DO1
+#define CRC_DO1 c = crc_table[(c ^ *buf++) & 0xff] ^ (c >> 8)
+#define CRC_DO8 CRC_DO1; CRC_DO1; CRC_DO1; CRC_DO1; CRC_DO1; CRC_DO1; CRC_DO1; CRC_DO1
 
 /* CRC polynomial. */
 #define POLY 0xedb88320         /* p(x) reflected, with x^32 implied */
