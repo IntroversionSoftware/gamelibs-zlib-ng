@@ -88,6 +88,16 @@ SOURCES += \
     arch/arm/crc32_armv8.c \
     arch/arm/slide_hash_armv6.c \
     arch/arm/slide_hash_neon.c
+
+# ARM files that need -fno-lto
+ARM_ARCH_FILES = \
+    arch/arm/adler32_neon.c \
+    arch/arm/arm_features.c \
+    arch/arm/chunkset_neon.c \
+    arch/arm/compare256_neon.c \
+    arch/arm/crc32_armv8.c \
+    arch/arm/slide_hash_armv6.c \
+    arch/arm/slide_hash_neon.c
 endif
 
 ifeq ($(uname_M),x86_64)
@@ -111,6 +121,41 @@ SOURCES += \
     arch/x86/slide_hash_avx2.c \
     arch/x86/slide_hash_sse2.c \
     arch/x86/x86_features.c
+
+# Group x86 files by their required compiler flags
+X86_FEATURES_FILES = arch/x86/x86_features.c
+
+SSE2_FILES = \
+    arch/x86/chorba_sse2.c \
+    arch/x86/chunkset_sse2.c \
+    arch/x86/compare256_sse2.c \
+    arch/x86/slide_hash_sse2.c
+
+SSSE3_FILES = \
+    arch/x86/adler32_ssse3.c \
+    arch/x86/chunkset_ssse3.c
+
+SSE41_FILES = arch/x86/chorba_sse41.c
+
+SSE42_FILES = arch/x86/adler32_sse42.c
+
+AVX2_FILES = \
+    arch/x86/adler32_avx2.c \
+    arch/x86/chunkset_avx2.c \
+    arch/x86/compare256_avx2.c \
+    arch/x86/slide_hash_avx2.c
+
+AVX512_FILES = \
+    arch/x86/adler32_avx512.c \
+    arch/x86/compare256_avx512.c
+
+AVX512_VNNI_FILES = arch/x86/adler32_avx512_vnni.c
+
+AVX512_BMI2_FILES = arch/x86/chunkset_avx512.c
+
+PCLMUL_FILES = arch/x86/crc32_pclmulqdq.c
+
+VPCLMUL_FILES = arch/x86/crc32_vpclmulqdq.c
 endif
 
 HEADERS_INST := $(patsubst %,$(includedir)/%,$(HEADERS))
@@ -138,11 +183,36 @@ endif
 ifeq ($(uname_M),x86_64)
 CFLAGS += \
     -DHAVE_CPUID_GNU \
+    -DX86_AVX2 \
+    -DX86_AVX512 \
+    -DX86_AVX512VNNI \
     -DX86_FEATURES \
+    -DX86_HAVE_XSAVE_INTRIN \
+    -DX86_PCLMULQDQ_CRC \
     -DX86_SSE2 \
     -DX86_SSE41 \
     -DX86_SSE42 \
-    -DX86_SSSE3
+    -DX86_SSSE3 \
+    -DX86_VPCLMULQDQ_CRC
+endif
+
+# Target-specific variable assignments for architecture-specific files
+ifeq ($(uname_M),arm64)
+$(patsubst %.c,$(OBJ_DIR)/%.o,$(ARM_ARCH_FILES)): EXTRA_CFLAGS = -fno-lto
+endif
+
+ifeq ($(uname_M),x86_64)
+$(patsubst %.c,$(OBJ_DIR)/%.o,$(X86_FEATURES_FILES)): EXTRA_CFLAGS = -fno-lto -mxsave
+$(patsubst %.c,$(OBJ_DIR)/%.o,$(SSE2_FILES)): EXTRA_CFLAGS = -fno-lto -msse2
+$(patsubst %.c,$(OBJ_DIR)/%.o,$(SSSE3_FILES)): EXTRA_CFLAGS = -fno-lto -mssse3
+$(patsubst %.c,$(OBJ_DIR)/%.o,$(SSE41_FILES)): EXTRA_CFLAGS = -fno-lto -msse4.1
+$(patsubst %.c,$(OBJ_DIR)/%.o,$(SSE42_FILES)): EXTRA_CFLAGS = -fno-lto -msse4.2
+$(patsubst %.c,$(OBJ_DIR)/%.o,$(AVX2_FILES)): EXTRA_CFLAGS = -fno-lto -mavx2
+$(patsubst %.c,$(OBJ_DIR)/%.o,$(AVX512_FILES)): EXTRA_CFLAGS = -fno-lto -mavx512f -mavx512bw -mavx512vl
+$(patsubst %.c,$(OBJ_DIR)/%.o,$(AVX512_VNNI_FILES)): EXTRA_CFLAGS = -fno-lto -mavx512f -mavx512bw -mavx512vl -mavx512vnni
+$(patsubst %.c,$(OBJ_DIR)/%.o,$(AVX512_BMI2_FILES)): EXTRA_CFLAGS = -fno-lto -mavx512f -mavx512bw -mavx512vl -mbmi2
+$(patsubst %.c,$(OBJ_DIR)/%.o,$(PCLMUL_FILES)): EXTRA_CFLAGS = -fno-lto -mpclmul -mssse3
+$(patsubst %.c,$(OBJ_DIR)/%.o,$(VPCLMUL_FILES)): EXTRA_CFLAGS = -fno-lto -mpclmul -mavx512f -mvpclmulqdq
 endif
 
 .PHONY: install
@@ -172,7 +242,7 @@ $(OBJ_DIR)/$(LIB): $(OBJECTS) | $$(@D)/.
 	$(QUIET_RANLIB)$(RANLIB) $@
 
 $(OBJ_DIR)/%.o: %.c $(OBJ_DIR)/.cflags | $$(@D)/.
-	$(QUIET_CC)$(CC) $(CFLAGS) -o $@ -c $<
+	$(QUIET_CC)$(CC) $(CFLAGS) $(EXTRA_CFLAGS) -o $@ -c $<
 
 .PRECIOUS: $(OBJ_DIR)/. $(OBJ_DIR)%/.
 

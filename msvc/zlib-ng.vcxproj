@@ -96,75 +96,75 @@
     <ClCompile Include="..\arch\generic\crc32_fold_c.c" />
     <ClCompile Include="..\arch\generic\slide_hash_c.c" />
     <ClCompile Include="..\arch\x86\adler32_avx2.c">
-      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-mavx2 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-fno-lto -mavx2 %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\arch\x86\adler32_avx512.c">
-      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-mavx512f -mavx512bw -mavx512vl %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-fno-lto -mavx512f -mavx512bw -mavx512vl %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\arch\x86\adler32_avx512_vnni.c">
-      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-mavx512f -mavx512bw -mavx512vl -mavx512vnni %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-fno-lto -mavx512f -mavx512bw -mavx512vl -mavx512vnni %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\arch\x86\adler32_sse42.c">
-      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-msse4.2 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-fno-lto -msse4.2 %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\arch\x86\adler32_ssse3.c">
-      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-mssse3 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-fno-lto -mssse3 %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\arch\x86\chorba_sse2.c">
-      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-msse2 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-fno-lto -msse2 %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\arch\x86\chorba_sse41.c">
-      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-msse4.1 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-fno-lto -msse4.1 %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\arch\x86\chunkset_avx2.c">
-      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-mavx2 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-fno-lto -mavx2 %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\arch\x86\chunkset_avx512.c">
-      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-mavx512f -mavx512bw -mavx512vl -mbmi2 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-fno-lto -mavx512f -mavx512bw -mavx512vl -mbmi2 %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\arch\x86\chunkset_sse2.c">
-      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-msse2 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-fno-lto -msse2 %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\arch\x86\chunkset_ssse3.c">
-      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-mssse3 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-fno-lto -mssse3 %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\arch\x86\compare256_avx2.c">
-      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-mavx2 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-fno-lto -mavx2 %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\arch\x86\compare256_avx512.c">
-      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-mavx512f -mavx512vl -mavx512bw %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-fno-lto -mavx512f -mavx512vl -mavx512bw %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\arch\x86\compare256_sse2.c">
-      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-msse2 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-fno-lto -msse2 %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\arch\x86\crc32_pclmulqdq.c">
-      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-mpclmul %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-fno-lto -mpclmul %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\arch\x86\crc32_vpclmulqdq.c">
-      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-mpclmul -mavx512f -mvpclmulqdq %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-fno-lto -mpclmul -mavx512f -mvpclmulqdq %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\arch\x86\slide_hash_avx2.c">
-      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-mavx2 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-fno-lto -mavx2 %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\arch\x86\slide_hash_sse2.c">
-      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-msse2 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(ToolsetFamily)'=='LLVM'">-fno-lto -msse2 %(AdditionalOptions)</AdditionalOptions>
       <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\arch\x86\x86_features.c">
