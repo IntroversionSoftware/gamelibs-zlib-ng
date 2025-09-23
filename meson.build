@@ -65,15 +65,6 @@ endif
 
 incdirs = include_directories(incdirs)
 
-# Build the main generic library
-main_lib = static_library(
-    'z_main',
-    generic_sources,
-    c_args: c_flags,
-    include_directories: incdirs,
-    dependencies: link_deps,
-)
-
 arch_libs = []
 
 if host_machine.cpu_family() == 'x86' or host_machine.cpu_family() == 'x86_64'
@@ -243,6 +234,15 @@ if host_machine.cpu_family() == 'aarch64'
     )
     arch_libs += [arm_lib]
 endif
+
+# Build the main generic library
+main_lib = static_library(
+    'z_main',
+    generic_sources,
+    c_args: c_flags,
+    include_directories: incdirs,
+    dependencies: link_deps,
+)
 
 # Combine all libraries into the final static library
 all_libs = [main_lib] + arch_libs
