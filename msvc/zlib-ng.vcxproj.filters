@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <ItemGroup>
+    <Filter Include="arch">
+      <UniqueIdentifier>{fa92b014-3d31-4c3d-abe9-e1550996c490}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="arch\arm">
+      <UniqueIdentifier>{6829c8d3-82ea-4e74-ae9f-f2c7c8e62aac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="arch\generic">
+      <UniqueIdentifier>{b38df449-93c9-4356-aab7-549ef6cae2a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="arch\x86">
+      <UniqueIdentifier>{f8306851-e21a-4020-aebc-4ad94bd0f0f2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\adler32_p.h" />
+    <ClInclude Include="..\arch\arm\acle_intrins.h">
+      <Filter>arch\arm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arch\arm\arm_features.h">
+      <Filter>arch\arm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arch\arm\arm_functions.h">
+      <Filter>arch\arm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arch\arm\neon_intrins.h">
+      <Filter>arch\arm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arch\generic\chunk_128bit_perm_idx_lut.h">
+      <Filter>arch\generic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arch\generic\chunk_256bit_perm_idx_lut.h">
+      <Filter>arch\generic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arch\generic\chunk_permute_table.h">
+      <Filter>arch\generic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arch\generic\compare256_p.h">
+      <Filter>arch\generic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arch\generic\generic_functions.h">
+      <Filter>arch\generic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arch\x86\adler32_avx2_p.h">
+      <Filter>arch\x86</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arch\x86\adler32_avx512_p.h">
+      <Filter>arch\x86</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arch\x86\adler32_ssse3_p.h">
+      <Filter>arch\x86</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arch\x86\crc32_fold_pclmulqdq_tpl.h">
+      <Filter>arch\x86</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arch\x86\crc32_fold_vpclmulqdq_tpl.h">
+      <Filter>arch\x86</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arch\x86\crc32_pclmulqdq_tpl.h">
+      <Filter>arch\x86</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arch\x86\x86_features.h">
+      <Filter>arch\x86</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arch\x86\x86_functions.h">
+      <Filter>arch\x86</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arch\x86\x86_intrins.h">
+      <Filter>arch\x86</Filter>
+    </ClInclude>
+    <ClInclude Include="..\arch_functions.h" />
+    <ClInclude Include="..\chunkset_tpl.h" />
+    <ClInclude Include="..\compare256_rle.h" />
+    <ClInclude Include="..\cpu_features.h" />
+    <ClInclude Include="..\crc32.h" />
+    <ClInclude Include="..\crc32_braid_comb_p.h" />
+    <ClInclude Include="..\crc32_braid_p.h" />
+    <ClInclude Include="..\crc32_braid_tbl.h" />
+    <ClInclude Include="..\deflate.h" />
+    <ClInclude Include="..\deflate_p.h" />
+    <ClInclude Include="..\fallback_builtins.h" />
+    <ClInclude Include="..\functable.h" />
+    <ClInclude Include="..\inffast_tpl.h" />
+    <ClInclude Include="..\inffixed_tbl.h" />
+    <ClInclude Include="..\inflate.h" />
+    <ClInclude Include="..\inflate_p.h" />
+    <ClInclude Include="..\inftrees.h" />
+    <ClInclude Include="..\insert_string_tpl.h" />
+    <ClInclude Include="..\match_tpl.h" />
+    <ClInclude Include="..\trees.h" />
+    <ClInclude Include="..\trees_emit.h" />
+    <ClInclude Include="..\trees_tbl.h" />
+    <ClInclude Include="..\zbuild.h" />
+    <ClInclude Include="..\zconf.h" />
+    <ClInclude Include="..\zendian.h" />
+    <ClInclude Include="..\zlib.h" />
+    <ClInclude Include="..\zlib_name_mangling.h" />
+    <ClInclude Include="..\zmemory.h" />
+    <ClInclude Include="..\zutil.h" />
+    <ClInclude Include="..\zutil_p.h" />
+    <ClInclude Include="..\insert_string_p.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\adler32.c" />
+    <ClCompile Include="..\arch\arm\adler32_neon.c">
+      <Filter>arch\arm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\arm\arm_features.c">
+      <Filter>arch\arm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\arm\chunkset_neon.c">
+      <Filter>arch\arm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\arm\compare256_neon.c">
+      <Filter>arch\arm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\arm\crc32_armv8.c">
+      <Filter>arch\arm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\arm\slide_hash_armv6.c">
+      <Filter>arch\arm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\arm\slide_hash_neon.c">
+      <Filter>arch\arm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\generic\adler32_c.c">
+      <Filter>arch\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\generic\chunkset_c.c">
+      <Filter>arch\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\generic\compare256_c.c">
+      <Filter>arch\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\generic\crc32_braid_c.c">
+      <Filter>arch\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\generic\crc32_chorba_c.c">
+      <Filter>arch\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\generic\crc32_fold_c.c">
+      <Filter>arch\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\generic\slide_hash_c.c">
+      <Filter>arch\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\adler32_avx2.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\adler32_avx512.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\adler32_avx512_vnni.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\adler32_sse42.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\adler32_ssse3.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\chorba_sse2.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\chorba_sse41.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\chunkset_avx2.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\chunkset_avx512.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\chunkset_sse2.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\chunkset_ssse3.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\compare256_avx2.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\compare256_avx512.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\compare256_sse2.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\crc32_pclmulqdq.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\crc32_vpclmulqdq.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\slide_hash_avx2.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\slide_hash_sse2.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arch\x86\x86_features.c">
+      <Filter>arch\x86</Filter>
+    </ClCompile>
+    <ClCompile Include="..\compress.c" />
+    <ClCompile Include="..\cpu_features.c" />
+    <ClCompile Include="..\crc32.c" />
+    <ClCompile Include="..\crc32_braid_comb.c" />
+    <ClCompile Include="..\deflate.c" />
+    <ClCompile Include="..\deflate_fast.c" />
+    <ClCompile Include="..\deflate_huff.c" />
+    <ClCompile Include="..\deflate_medium.c" />
+    <ClCompile Include="..\deflate_quick.c" />
+    <ClCompile Include="..\deflate_rle.c" />
+    <ClCompile Include="..\deflate_slow.c" />
+    <ClCompile Include="..\deflate_stored.c" />
+    <ClCompile Include="..\functable.c" />
+    <ClCompile Include="..\infback.c" />
+    <ClCompile Include="..\inflate.c" />
+    <ClCompile Include="..\inftrees.c" />
+    <ClCompile Include="..\insert_string.c" />
+    <ClCompile Include="..\trees.c" />
+    <ClCompile Include="..\uncompr.c" />
+    <ClCompile Include="..\zutil.c" />
+  </ItemGroup>
+</Project>
