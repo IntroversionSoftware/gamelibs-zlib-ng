@@ -15,7 +15,7 @@
 #  define Z_TARGET_CRC
 #endif
 
-#if !defined(ARM_CRC32_INTRIN) && !defined(_MSC_VER)
+#if !defined(ARM_CRC32_INTRIN) && (!defined(_MSC_VER) || defined(__clang__))
 #ifdef __aarch64__
 static inline uint32_t __crc32b(uint32_t __a, uint8_t __b) {
     uint32_t __c;
