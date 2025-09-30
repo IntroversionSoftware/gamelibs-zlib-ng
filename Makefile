@@ -196,6 +196,9 @@ CFLAGS += \
     -DX86_VPCLMULQDQ_CRC
 endif
 
+# Need to remove -fwhole-program-vtables because it depends on -flto
+CFLAGS := $(filter-out -flto -fwhole-program-vtables,$(CFLAGS))
+
 # Target-specific variable assignments for architecture-specific files
 ifeq ($(uname_M),arm64)
 $(patsubst %.c,$(OBJ_DIR)/%.o,$(ARM_ARCH_FILES)): EXTRA_CFLAGS = -fno-lto
