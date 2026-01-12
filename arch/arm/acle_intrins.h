@@ -20,7 +20,7 @@
 #  define Z_TARGET_PMULL_EOR3
 #endif
 
-#if !defined(ARM_CRC32_INTRIN) && (!defined(_MSC_VER) || defined(__clang__))
+#if !defined(ARM_CRC32_INTRIN) && (!defined(_MSC_VER) || (defined(__clang__) && __clang_major__ < 22))
 #if defined(ARCH_ARM) && defined(ARCH_64BIT)
 static inline uint32_t __crc32b(uint32_t __a, uint8_t __b) {
     uint32_t __c;
