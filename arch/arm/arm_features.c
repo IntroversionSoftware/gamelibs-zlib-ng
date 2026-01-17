@@ -25,6 +25,7 @@
 #  include <windows.h>
 #endif
 
+#if defined(ARCH_ARM)
 static int arm_has_crc32(void) {
 #if defined(ARM_AUXV_HAS_CRC32)
 #  if defined(__FreeBSD__) || defined(__OpenBSD__)
@@ -310,7 +311,7 @@ static inline int arm_cpu_has_fast_pmull(void) {
 }
 
 void Z_INTERNAL arm_check_features(struct arm_cpu_features *features) {
-#if defined(ARCH_ARM) && defined(ARCH_64BIT)
+#if defined(ARCH_64BIT)
     features->has_simd = 0; /* never available */
     features->has_neon = 1; /* always available */
 #else
@@ -322,3 +323,4 @@ void Z_INTERNAL arm_check_features(struct arm_cpu_features *features) {
     features->has_eor3 = arm_has_eor3();
     features->has_fast_pmull = features->has_pmull && arm_cpu_has_fast_pmull();
 }
+#endif
