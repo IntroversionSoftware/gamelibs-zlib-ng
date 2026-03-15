@@ -113,7 +113,6 @@ SOURCES += \
     arch/x86/crc32_chorba_sse2.c \
     arch/x86/crc32_chorba_sse41.c \
     arch/x86/crc32_pclmulqdq.c \
-    arch/x86/crc32_vpclmulqdq.c \
     arch/x86/slide_hash_avx2.c \
     arch/x86/slide_hash_sse2.c \
     arch/x86/x86_features.c
